@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yo, What's Up?</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"],
+        input[type="email"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+        .error {
+            color: red;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <header style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+        <h1 style="margin: 0;">Yo, what's up?</h1>
+        <nav>
+            <a href="/" style="margin-right: 15px;">Home</a>
+            <a href="/users">User Directory</a>
+        </nav>
+    </header>
+
+    <form action="/submit" method="POST">
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input 
+                type="email" 
+                id="email" 
+                name="email" 
+                value="<%= formData && formData.email %>"
+                required
+            >
+            <% if (errors) { %>
+                <% const emailError = errors.find(e => e.param === 'email'); %>
+                <% if (emailError) { %>
+                    <span class="error"><%= emailError.msg %></span>
+                <% } %>
+            <% } %>
+        </div>
+
+        <div class="form-group">
+            <label for="nickname">Nickname:</label>
+            <input 
+                type="text" 
+                id="nickname" 
+                name="nickname" 
+                value="<%= formData && formData.nickname %>"
+                required
+            >
+            <% if (errors) { %>
+                <% const nicknameError = errors.find(e => e.param === 'nickname'); %>
+                <% if (nicknameError) { %>
+                    <span class="error"><%= nicknameError.msg %></span>
+                <% } %>
+            <% } %>
+        </div>
+
+        <div class="form-group">
+            <label for="city">City:</label>
+            <input 
+                type="text" 
+                id="city" 
+                name="city" 
+                value="<%= formData && formData.city %>"
+                required
+            >
+            <% if (errors) { %>
+                <% const cityError = errors.find(e => e.param === 'city'); %>
+                <% if (cityError) { %>
+                    <span class="error"><%= cityError.msg %></span>
+                <% } %>
+            <% } %>
+        </div>
+
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
