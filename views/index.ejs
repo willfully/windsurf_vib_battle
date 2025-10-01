@@ -4,94 +4,89 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yo, What's Up?</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        .form-group {
-            margin-bottom: 15px;
-        }
-        label {
-            display: block;
-            margin-bottom: 5px;
-        }
-        input[type="text"],
-        input[type="email"] {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 10px;
-        }
-        .error {
-            color: red;
-            font-size: 0.9em;
-        }
-    </style>
+    <link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
-    <header style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-        <h1 style="margin: 0;">Yo, what's up?</h1>
-        <nav>
-            <a href="/" style="margin-right: 15px;">Home</a>
-            <a href="/users">User Directory</a>
-        </nav>
-    </header>
+    <div class="page-container">
+        <header class="site-header">
+            <h1 class="logo-text">Yo, What's Up</h1>
+            <nav class="nav-links">
+                <a href="/" class="nav-link active">Home</a>
+                <a href="/users" class="nav-link">User Directory</a>
+            </nav>
+        </header>
 
-    <form action="/submit" method="POST">
-        <div class="form-group">
-            <label for="email">Email:</label>
-            <input 
-                type="email" 
-                id="email" 
-                name="email" 
-                value="<%= formData && formData.email %>"
-                required
-            >
-            <% if (errors) { %>
-                <% const emailError = errors.find(e => e.param === 'email'); %>
-                <% if (emailError) { %>
-                    <span class="error"><%= emailError.msg %></span>
-                <% } %>
-            <% } %>
-        </div>
+        <main class="content-area">
+            <section class="tron-card">
+                <div class="card-title">
+                    <h2>Enter the Grid</h2>
+                    <p>Drop your handle and location to join the neon roster.</p>
+                </div>
 
-        <div class="form-group">
-            <label for="nickname">Nickname:</label>
-            <input 
-                type="text" 
-                id="nickname" 
-                name="nickname" 
-                value="<%= formData && formData.nickname %>"
-                required
-            >
-            <% if (errors) { %>
-                <% const nicknameError = errors.find(e => e.param === 'nickname'); %>
-                <% if (nicknameError) { %>
-                    <span class="error"><%= nicknameError.msg %></span>
-                <% } %>
-            <% } %>
-        </div>
+                <form action="/submit" method="POST" class="form-grid">
+                    <div class="form-field">
+                        <label class="form-label" for="email">Email</label>
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            class="form-input"
+                            value="<%= formData && formData.email %>"
+                            required
+                        >
+                        <% if (errors) { %>
+                            <% const emailError = errors.find(e => e.param === 'email'); %>
+                            <% if (emailError) { %>
+                                <span class="error-message"><%= emailError.msg %></span>
+                            <% } %>
+                        <% } %>
+                    </div>
 
-        <div class="form-group">
-            <label for="city">City:</label>
-            <input 
-                type="text" 
-                id="city" 
-                name="city" 
-                value="<%= formData && formData.city %>"
-                required
-            >
-            <% if (errors) { %>
-                <% const cityError = errors.find(e => e.param === 'city'); %>
-                <% if (cityError) { %>
-                    <span class="error"><%= cityError.msg %></span>
-                <% } %>
-            <% } %>
-        </div>
+                    <div class="form-field">
+                        <label class="form-label" for="nickname">Nickname</label>
+                        <input
+                            type="text"
+                            id="nickname"
+                            name="nickname"
+                            class="form-input"
+                            value="<%= formData && formData.nickname %>"
+                            required
+                        >
+                        <% if (errors) { %>
+                            <% const nicknameError = errors.find(e => e.param === 'nickname'); %>
+                            <% if (nicknameError) { %>
+                                <span class="error-message"><%= nicknameError.msg %></span>
+                            <% } %>
+                        <% } %>
+                    </div>
 
-        <button type="submit">Submit</button>
-    </form>
+                    <div class="form-field">
+                        <label class="form-label" for="city">City</label>
+                        <input
+                            type="text"
+                            id="city"
+                            name="city"
+                            class="form-input"
+                            value="<%= formData && formData.city %>"
+                            required
+                        >
+                        <% if (errors) { %>
+                            <% const cityError = errors.find(e => e.param === 'city'); %>
+                            <% if (cityError) { %>
+                                <span class="error-message"><%= cityError.msg %></span>
+                            <% } %>
+                        <% } %>
+                    </div>
+
+                    <div class="button-group">
+                        <button type="submit" class="tron-button primary">Transmit Details</button>
+                        <a class="tron-button secondary" href="/users">View Roster</a>
+                    </div>
+                </form>
+            </section>
+        </main>
+
+        <footer>Neon Node Collective · 2025</footer>
+    </div>
 </body>
 </html>

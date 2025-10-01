@@ -4,89 +4,67 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Directory</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-        nav a {
-            margin-right: 15px;
-            text-decoration: none;
-            color: #007bff;
-        }
-        nav a:hover {
-            text-decoration: underline;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 10px;
-            text-align: left;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-        .empty-state {
-            padding: 20px;
-            background-color: #f9f9f9;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-        .error {
-            color: #b00020;
-            margin-bottom: 20px;
-        }
-    </style>
+    <link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
-    <header>
-        <h1>User Directory</h1>
-        <nav>
-            <a href="/">Home</a>
-            <a href="/users">User Directory</a>
-        </nav>
-    </header>
+    <div class="page-container">
+        <header class="site-header">
+            <h1 class="logo-text">User Directory</h1>
+            <nav class="nav-links">
+                <a href="/" class="nav-link">Home</a>
+                <a href="/users" class="nav-link active">User Directory</a>
+            </nav>
+        </header>
 
-    <% if (error) { %>
-        <div class="error"><%= error %></div>
-    <% } %>
+        <main class="content-area">
+            <% if (error) { %>
+                <div class="error-banner">
+                    <strong>Error:</strong> <%= error %>
+                </div>
+            <% } %>
 
-    <% if (!users || users.length === 0) { %>
-        <div class="empty-state">
-            No users have signed up yet. Share the form to start collecting entries!
-        </div>
-    <% } else { %>
-        <table>
-            <thead>
-                <tr>
-                    <th>Email</th>
-                    <th>Nickname</th>
-                    <th>City</th>
-                    <th>Submitted At</th>
-                </tr>
-            </thead>
-            <tbody>
-                <% users.forEach((user) => { %>
-                    <tr>
-                        <td><%= user.email %></td>
-                        <td><%= user.nickname %></td>
-                        <td><%= user.city %></td>
-                        <td><%= new Date(user.created_at).toLocaleString() %></td>
-                    </tr>
-                <% }); %>
-            </tbody>
-        </table>
-    <% } %>
+            <section class="tron-card">
+                <div class="card-title">
+                    <h2>Roster Status</h2>
+                    <p><span class="highlight"><%= users ? users.length : 0 %></span> programs synced to the grid.</p>
+                </div>
+
+                <% if (!users || users.length === 0) { %>
+                    <div class="empty-state">
+                        Awaiting first transmission. Share the access link to light up the roster.
+                    </div>
+                <% } else { %>
+                    <div class="table-wrapper">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Email</th>
+                                    <th>Nickname</th>
+                                    <th>City</th>
+                                    <th>Synced At</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% users.forEach((user) => { %>
+                                    <tr>
+                                        <td><%= user.email %></td>
+                                        <td><%= user.nickname %></td>
+                                        <td><%= user.city %></td>
+                                        <td class="timestamp"><%= new Date(user.created_at).toLocaleString() %></td>
+                                    </tr>
+                                <% }); %>
+                            </tbody>
+                        </table>
+                    </div>
+                <% } %>
+
+                <div class="button-group" style="margin-top: 24px;">
+                    <a href="/" class="tron-button secondary">Back to Entry Portal</a>
+                </div>
+            </section>
+        </main>
+
+        <footer>Neon Node Collective · 2025</footer>
+    </div>
 </body>
 </html>

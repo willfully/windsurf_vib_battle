@@ -3,48 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thanks for signing up!</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
-            text-align: center;
-        }
-        .user-info {
-            background-color: #f5f5f5;
-            padding: 20px;
-            border-radius: 5px;
-            margin: 20px 0;
-            text-align: left;
-            display: inline-block;
-        }
-        .back-button {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-        }
-        .back-button:hover {
-            background-color: #0056b3;
-        }
-    </style>
+    <title>Transmission Successful</title>
+    <link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
-    <h1>Thanks for signing up, <%= nickname %>! 🎉</h1>
-    
-    <div class="user-info">
-        <p><strong>Email:</strong> <%= email %></p>
-        <p><strong>Nickname:</strong> <%= nickname %></p>
-        <p><strong>City:</strong> <%= city %></p>
-    </div>
+    <div class="page-container">
+        <header class="site-header">
+            <h1 class="logo-text">Transmission Complete</h1>
+            <nav class="nav-links">
+                <a href="/" class="nav-link">Home</a>
+                <a href="/users" class="nav-link">User Directory</a>
+            </nav>
+        </header>
 
-    <p>We've received your information. (Not really, this is just a demo 😉)</p>
-    
-    <a href="/" class="back-button">Back to Home</a>
+        <main class="content-area">
+            <section class="tron-card">
+                <div class="card-title">
+                    <h2>Welcome to the Grid, <span class="highlight"><%= nickname %></span></h2>
+                    <p>Your credentials just synced with our core database.</p>
+                </div>
+
+                <div class="success-banner">
+                    ✅ Sync confirmed. A confirmation pulse has been logged at <span class="highlight"><%= new Date().toLocaleString() %></span>.
+                </div>
+
+                <div class="form-grid" style="margin-top: 24px;">
+                    <div class="form-field">
+                        <label class="form-label">Email</label>
+                        <div class="form-input" style="border: 1px solid rgba(8, 247, 254, 0.2);"><%= email %></div>
+                    </div>
+                    <div class="form-field">
+                        <label class="form-label">Nickname</label>
+                        <div class="form-input" style="border: 1px solid rgba(8, 247, 254, 0.2);"><%= nickname %></div>
+                    </div>
+                    <div class="form-field">
+                        <label class="form-label">City</label>
+                        <div class="form-input" style="border: 1px solid rgba(8, 247, 254, 0.2);"><%= city %></div>
+                    </div>
+                </div>
+
+                <div class="button-group" style="margin-top: 28px;">
+                    <a href="/" class="tron-button secondary">Back to Entry Portal</a>
+                    <a href="/users" class="tron-button primary" style="background: linear-gradient(120deg, rgba(8, 247, 254, 0.9), rgba(255, 0, 230, 0.85));">View Neon Roster</a>
+                </div>
+            </section>
+        </main>
+
+        <footer>Neon Node Collective · 2025</footer>
+    </div>
 </body>
 </html>

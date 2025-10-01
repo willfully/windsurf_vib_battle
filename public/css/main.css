@@ -1,0 +1,335 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&family=Roboto:wght@300;400;500&display=swap');
+
+:root {
+  --tron-bg-top: #03070f;
+  --tron-bg-bottom: #060d1f;
+  --tron-panel: rgba(6, 16, 41, 0.92);
+  --tron-border: #08f7fe;
+  --tron-border-soft: rgba(8, 247, 254, 0.45);
+  --tron-accent: #ff00e6;
+  --tron-accent-soft: rgba(255, 0, 230, 0.6);
+  --tron-text: #e2f7ff;
+  --tron-muted: #7aa0b8;
+  --tron-success: #29ff97;
+  --shadow-strong: 0 0 35px rgba(8, 247, 254, 0.25);
+  --shadow-soft: 0 0 18px rgba(8, 247, 254, 0.18);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  color: var(--tron-text);
+  background: radial-gradient(circle at top, var(--tron-bg-top) 0%, var(--tron-bg-bottom) 60%, #02040a 100%);
+  min-height: 100vh;
+}
+
+.page-container {
+  width: min(960px, calc(100% - 64px));
+  margin: 0 auto;
+  padding: 48px 0 64px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.site-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+}
+
+.logo-text {
+  font-family: 'Orbitron', sans-serif;
+  letter-spacing: 0.08em;
+  font-size: clamp(1.5rem, 3vw, 2.4rem);
+  margin: 0;
+  text-transform: uppercase;
+  text-shadow: 0 0 12px var(--tron-border-soft);
+}
+
+.nav-links {
+  display: flex;
+  gap: 16px;
+}
+
+.nav-link {
+  position: relative;
+  padding: 10px 18px;
+  font-size: 0.95rem;
+  text-decoration: none;
+  color: var(--tron-text);
+  letter-spacing: 0.05em;
+  border: 1px solid transparent;
+  border-radius: 30px;
+  transition: all 0.25s ease;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 30px;
+  border: 1px solid var(--tron-border);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.nav-link:hover,
+.nav-link:focus {
+  color: var(--tron-border);
+}
+
+.nav-link:hover::after,
+.nav-link:focus::after {
+  opacity: 0.6;
+}
+
+.nav-link.active {
+  color: var(--tron-border);
+  box-shadow: var(--shadow-soft);
+}
+
+.nav-link.active::after {
+  opacity: 0.75;
+}
+
+.content-area {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.tron-card {
+  background: var(--tron-panel);
+  border: 1px solid var(--tron-border-soft);
+  border-radius: 18px;
+  padding: 32px;
+  box-shadow: var(--shadow-strong);
+  backdrop-filter: blur(8px);
+}
+
+.card-title {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  row-gap: 12px;
+  margin-bottom: 24px;
+}
+
+.card-title h2 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: clamp(1.25rem, 2.2vw, 1.8rem);
+  margin: 0;
+  letter-spacing: 0.06em;
+}
+
+.card-title p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--tron-muted);
+}
+
+.form-grid {
+  display: grid;
+  gap: 22px;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-label {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.82rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--tron-border);
+}
+
+.form-input {
+  background: rgba(3, 10, 25, 0.8);
+  border: 1px solid rgba(8, 247, 254, 0.35);
+  border-radius: 12px;
+  padding: 14px 16px;
+  color: var(--tron-text);
+  font-size: 1rem;
+  transition: all 0.25s ease;
+  font-family: 'Roboto', sans-serif;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--tron-border);
+  box-shadow: 0 0 16px rgba(8, 247, 254, 0.2);
+}
+
+.error-message {
+  color: var(--tron-accent);
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+}
+
+.tron-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 24px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  text-decoration: none;
+  font-family: 'Orbitron', sans-serif;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  font-size: 0.9rem;
+}
+
+.tron-button.primary {
+  background: linear-gradient(120deg, rgba(8, 247, 254, 0.85), rgba(41, 255, 151, 0.85));
+  color: #021218;
+  box-shadow: 0 0 18px rgba(8, 247, 254, 0.35);
+}
+
+.tron-button.primary:hover {
+  box-shadow: 0 0 26px rgba(8, 247, 254, 0.5);
+}
+
+.tron-button.secondary {
+  background: transparent;
+  border-color: rgba(8, 247, 254, 0.4);
+  color: var(--tron-border);
+}
+
+.tron-button.secondary:hover {
+  border-color: var(--tron-border);
+  box-shadow: var(--shadow-soft);
+}
+
+.button-group {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+  border-radius: 14px;
+  border: 1px solid var(--tron-border-soft);
+  box-shadow: var(--shadow-soft);
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 560px;
+}
+
+.data-table thead {
+  background: linear-gradient(120deg, rgba(8, 247, 254, 0.12), rgba(255, 0, 230, 0.12));
+}
+
+.data-table th,
+.data-table td {
+  padding: 16px 18px;
+  border-bottom: 1px solid rgba(8, 247, 254, 0.12);
+  text-align: left;
+}
+
+.data-table th {
+  font-family: 'Orbitron', sans-serif;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  color: var(--tron-border);
+}
+
+.data-table tbody tr {
+  transition: background 0.2s ease;
+}
+
+.data-table tbody tr:hover {
+  background: rgba(8, 247, 254, 0.08);
+}
+
+.timestamp {
+  color: var(--tron-muted);
+  font-size: 0.9rem;
+}
+
+.empty-state {
+  padding: 36px;
+  text-align: center;
+  border: 1px dashed rgba(8, 247, 254, 0.35);
+  border-radius: 16px;
+  background: rgba(8, 247, 254, 0.04);
+  font-size: 1rem;
+  letter-spacing: 0.03em;
+}
+
+.highlight {
+  color: var(--tron-accent);
+}
+
+.success-banner {
+  border: 1px solid rgba(41, 255, 151, 0.4);
+  background: rgba(41, 255, 151, 0.08);
+  border-radius: 14px;
+  padding: 18px;
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+  box-shadow: 0 0 16px rgba(41, 255, 151, 0.2);
+}
+
+.error-banner {
+  border: 1px solid rgba(255, 0, 230, 0.35);
+  background: rgba(255, 0, 230, 0.08);
+  border-radius: 14px;
+  padding: 18px;
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+  box-shadow: 0 0 16px rgba(255, 0, 230, 0.2);
+}
+
+footer {
+  text-align: center;
+  color: var(--tron-muted);
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-top: auto;
+}
+
+@media (max-width: 680px) {
+  .site-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .nav-links {
+    width: 100%;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .nav-link {
+    padding: 8px 14px;
+  }
+
+  .tron-card {
+    padding: 24px;
+  }
+
+  .page-container {
+    width: calc(100% - 32px);
+  }
+}
